@@ -42,11 +42,30 @@ class ImageScrollView: UIView {
     }
     
     func setupViews() {
+        
+
+        
         mainScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width:self.frame.width, height:frame.height))
         
-        mainScrollView.isDirectionalLockEnabled = true
+        self.backgroundColor = UIColor.clear
+        
+        mainScrollView.backgroundColor = UIColor.clear
+        
+        mainScrollView.contentInset = UIEdgeInsets(top: 90, left: 0, bottom: 0, right: 0)
+        mainScrollView.scrollIndicatorInsets = UIEdgeInsets(top: 90, left: 0, bottom: 0, right: 0)
+//        mainScrollView.showsHorizontalScrollIndicator = false
+//        mainScrollView.showsVerticalScrollIndicator = false
+        //        mainScrollView.backgroundColor = UIColor.white
+        
+        
+        
+        
         
         mainScrollView.delegate = self
+        
+        mainScrollView.decelerationRate = .fast
+        
+        mainScrollView.isDirectionalLockEnabled = true
         
         self.addSubview(mainScrollView)
         
@@ -79,16 +98,12 @@ class ImageScrollView: UIView {
             collectionView.isUserInteractionEnabled = false
         }
         
-        mainScrollView.backgroundColor = UIColor.white
-        
-        mainScrollView.contentSize = CGSize(width: CGFloat(viewCount) * screenWidth, height: mainScrollView.frame.height+200)
-        
-        mainScrollView.isPagingEnabled = true
         
         
-        mainScrollView.showsHorizontalScrollIndicator = false
-        mainScrollView.showsVerticalScrollIndicator = false
+        mainScrollView.contentSize = CGSize(width: CGFloat(viewCount) * screenWidth, height: mainScrollView.frame.height+50)
         
+//        mainScrollView.isPagingEnabled = true
+
         
         PostService.share.loadAllPopularPost { (posts) in
             self.posts = posts
@@ -96,75 +111,101 @@ class ImageScrollView: UIView {
         }
     }
 
-    override func layoutSubviews() {
-        
-        self.mainScrollView.frame.size = CGSize(width: self.frame.width, height: self.frame.height)
-
-        self.collectionViewList.forEach { (collectionView) in
-
-            collectionView.frame.size = CGSize(width: collectionView.frame.width, height: self.frame.height)
-        }
-    }
-    
+  
     
     func showViewIndex(index:Int){
-        self.mainScrollView.setContentOffset(CGPoint(x: CGFloat(index) * screenWidth, y: 0), animated: true)
+        self.mainScrollView.setContentOffset(CGPoint(x: CGFloat(index) * screenWidth, y: self.mainScrollView.contentOffset.y), animated: true)
         
         self.collectionViewList[index].reloadData()
     }
-    
-   
-    
 }
 
 extension ImageScrollView:UIScrollViewDelegate{
-    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)  {
-        
-        let index = Int(scrollView.contentOffset.x/scrollView.frame.width)
-        
-      
-        
-        self.delegate?.viewDidSelected(index: index)
-    }
     
-    
-   
-    
-     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    //    计算最终停止的位置
+    public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>){
         
-        if let scVW = scrollView as? UICollectionView{
-            
-            var offsetY = scVW.contentOffset.y
-            
-            if offsetY > 35 {
-                offsetY = 35
-            }
-            
-            if offsetY < 0 {
-                offsetY = 0
-            }
-            
-            print("offsetY:\(offsetY)")
-            
-            
-            
-            self.delegate?.scrollViewDidScroll(offSetY: offsetY)
-            
-            
-        }else{
-            
-            let index = Int(scrollView.contentOffset.x/scrollView.frame.width)
-            
-            self.collectionViewList[index].reloadData()
-            
-            if index+1 < self.collectionViewList.count{
-                self.collectionViewList[index+1].reloadData()
-                
-            }
-            
+        if scrollView.isPagingEnabled {
+            return
         }
         
+        var targetX:CGFloat = 0.0
+        
+        var page = Int((scrollView.contentOffset.x+scrollView.bounds.size.width/2)/scrollView.bounds.size.width)
+        
+        if velocity.x == 0 {//用户松手
+            
+            targetX = CGFloat(page) * scrollView.bounds.size.width
+            
+        }else{//用户滑动
+            
+            page = Int((scrollView.contentOffset.x)/scrollView.bounds.size.width)
+            
+            if velocity.x < 0{//右滑
+                print("右滑")
+                targetX = scrollView.bounds.size.width * CGFloat(page)
+            }else{//左滑
+                print("左滑")
+                
+                if page+1 < collectionViewList.count{
+                    
+                    page = page + 1
+                }
+                targetX = scrollView.bounds.size.width * CGFloat(page)
+            }
+        }
+        
+        print("targetX:\(targetX)")
+        
+        let point = CGPoint (x: targetX, y: targetContentOffset.pointee.y)
+        
+        targetContentOffset.pointee = point
+        
+        self.delegate?.viewDidSelected(index: page)
     }
+    
+    
+    
+//    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)  {
+//
+//        let index = Int((scrollView.contentOffset.x+scrollView.frame.width/2)/scrollView.frame.width)
+//
+//        self.showViewIndex(index:index)
+//
+//        self.delegate?.viewDidSelected(index: index)
+//    }
+    
+    
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+//        if (scrollView.contentOffset.x != 0 &&
+//            scrollView.contentOffset.y != 0) {
+//            scrollView.contentOffset = CGPoint(x: 0, y: 0)
+//        }
+        
+        let index = Int(scrollView.contentOffset.x/scrollView.frame.width)
+
+        self.collectionViewList[index].reloadData()
+
+        if index+1 < self.collectionViewList.count{
+            self.collectionViewList[index+1].reloadData()
+        }
+        
+        var offsetY = scrollView.contentOffset.y + 90
+
+        if offsetY < 0 {
+            offsetY = 0
+        }
+        
+//        print("offsetY:\(offsetY)")
+        
+        
+        
+        self.delegate?.scrollViewDidScroll(offSetY: offsetY)
+
+    }
+    
+
     
 }
 

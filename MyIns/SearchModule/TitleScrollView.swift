@@ -74,11 +74,18 @@ class TitleScrollView: UIView {
 
     fileprivate func setupViews() {
         
+        
         self.titleScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
         
         self.addSubview(self.titleScrollView)
         
         self.lebelWidth = self.screenWidth/3
+        
+
+        self.backgroundColor = UIColor.white
+        self.titleScrollView.backgroundColor = UIColor.white
+//        self.backgroundColor = UIColor.red
+//        self.titleScrollView.backgroundColor = UIColor.blue
         
         
         

@@ -18,35 +18,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cSE-BH-3v6" customClass="TitleScrollView" customModule="MyIns" customModuleProvider="target">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wGa-CE-q2w" customClass="ImageScrollView" customModule="MyIns" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="76" width="375" height="586"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cSE-BH-3v6" customClass="TitleScrollView" customModule="MyIns" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="76" width="375" height="90"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="cS7-64-ZmY"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wGa-CE-q2w" customClass="ImageScrollView" customModule="MyIns" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="166" width="375" height="496"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="fuc-T6-J7n">
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fuc-T6-J7n">
                                 <rect key="frame" x="0.0" y="20" width="375" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="fuc-T6-J7n" firstAttribute="trailing" secondItem="B7y-A4-ytO" secondAttribute="trailing" id="DgC-2B-veg"/>
-                            <constraint firstItem="cSE-BH-3v6" firstAttribute="top" secondItem="fuc-T6-J7n" secondAttribute="bottom" id="Fb7-na-EjN"/>
-                            <constraint firstItem="wGa-CE-q2w" firstAttribute="top" secondItem="cSE-BH-3v6" secondAttribute="bottom" id="MzI-gt-lxY"/>
-                            <constraint firstItem="wGa-CE-q2w" firstAttribute="leading" secondItem="B7y-A4-ytO" secondAttribute="leading" id="d4R-AJ-ghH"/>
-                            <constraint firstItem="fuc-T6-J7n" firstAttribute="leading" secondItem="B7y-A4-ytO" secondAttribute="leading" id="d53-tG-MC6"/>
-                            <constraint firstItem="fuc-T6-J7n" firstAttribute="top" secondItem="B7y-A4-ytO" secondAttribute="top" id="hJt-Id-avo"/>
-                            <constraint firstItem="cSE-BH-3v6" firstAttribute="leading" secondItem="B7y-A4-ytO" secondAttribute="leading" id="jF0-aX-iP9"/>
-                            <constraint firstItem="cSE-BH-3v6" firstAttribute="trailing" secondItem="B7y-A4-ytO" secondAttribute="trailing" id="jsr-a8-sqI"/>
-                            <constraint firstItem="B7y-A4-ytO" firstAttribute="bottom" secondItem="wGa-CE-q2w" secondAttribute="bottom" constant="5" id="tUy-Bk-cVI"/>
-                            <constraint firstItem="wGa-CE-q2w" firstAttribute="trailing" secondItem="B7y-A4-ytO" secondAttribute="trailing" id="xEp-ai-8Es"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="B7y-A4-ytO"/>
                     </view>
                     <navigationItem key="navigationItem" id="iV8-Hq-lVD"/>

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		93570058BF81B151B35F112E /* Pods_MyIns.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B76DC9D268A9814D08162CC7 /* Pods_MyIns.framework */; };
+		B1213E4421D961100086856C /* MyScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1213E4321D961100086856C /* MyScrollView.swift */; };
 		B131E37121B96E2400DC0D1B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B131E37021B96E2400DC0D1B /* HomeViewController.swift */; };
 		B131E37321B96E3700DC0D1B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B131E37221B96E3700DC0D1B /* SearchViewController.swift */; };
 		B131E37521B96E4800DC0D1B /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B131E37421B96E4800DC0D1B /* ActivityViewController.swift */; };
@@ -62,6 +63,7 @@
 /* Begin PBXFileReference section */
 		1C5B6B4C8D439B81410F7F6E /* Pods-MyIns.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyIns.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyIns/Pods-MyIns.release.xcconfig"; sourceTree = "<group>"; };
 		9C680988135A31B2B9CB2D83 /* Pods-MyIns.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyIns.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyIns/Pods-MyIns.debug.xcconfig"; sourceTree = "<group>"; };
+		B1213E4321D961100086856C /* MyScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyScrollView.swift; sourceTree = "<group>"; };
 		B131E37021B96E2400DC0D1B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B131E37221B96E3700DC0D1B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B131E37421B96E4800DC0D1B /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 			children = (
 				B1BB1F1521BBC717007F96A5 /* Share.storyboard */,
 				B131E37821B96E6700DC0D1B /* ShareViewController.swift */,
+				B1213E4321D961100086856C /* MyScrollView.swift */,
 				B1BB1F1F21BBFFF4007F96A5 /* CamaraViewController.swift */,
 				B1BB1F1721BBCF0D007F96A5 /* ShareDetailViewController.swift */,
 				B18A449921BAE5FD00B48BDC /* FotoCollectionViewCell.swift */,
@@ -446,6 +449,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1213E4421D961100086856C /* MyScrollView.swift in Sources */,
 				B1B09A0721BD74B0008F2F41 /* CommentTableViewController.swift in Sources */,
 				B131E37321B96E3700DC0D1B /* SearchViewController.swift in Sources */,
 				B1B09A0121BD4A07008F2F41 /* PostModel.swift in Sources */,

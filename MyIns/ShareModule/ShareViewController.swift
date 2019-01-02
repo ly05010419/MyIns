@@ -9,11 +9,13 @@
 import UIKit
 import Photos
 
-class ShareViewController: UIViewController,UITabBarDelegate,UICollectionViewDataSource,UICollectionViewDelegate{
+class ShareViewController: UIViewController,UITabBarDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIScrollViewDelegate{
+    
     
     @IBOutlet weak var shareImageView: UIImageView!
     @IBOutlet weak var imageColletionView: UICollectionView!
     
+    @IBOutlet weak var shareView: UIView!
     
     fileprivate let imageManager = PHCachingImageManager()
     var allPhotos: PHFetchResult<PHAsset>!
@@ -26,8 +28,14 @@ class ShareViewController: UIViewController,UITabBarDelegate,UICollectionViewDat
     var imageWidth:CGFloat = 0.0
     var imageSize:CGSize!
     
+    var shareViewY:CGFloat?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        self.myView.shareViewController = self;
+        
+        shareViewY = shareView.frame.origin.y
         
         let screenWidth = UIScreen.main.bounds.width
         
@@ -45,10 +53,36 @@ class ShareViewController: UIViewController,UITabBarDelegate,UICollectionViewDat
         imageColletionView.delegate = self
         imageColletionView.dataSource = self
         
+        imageColletionView.contentInset = UIEdgeInsets(top: 316, left: 0, bottom: 0, right: 0)
         
+        imageColletionView.scrollIndicatorInsets = UIEdgeInsets(top: 316, left: 0, bottom: 0, right: 0)
         
+        (imageColletionView as? UIScrollView)?.delegate = self
+
         
         checkAuthorizationForPhotoLibraryAndGet()
+    }
+    
+
+    
+    public func scrollViewDidScroll(_ scrollView: UIScrollView){
+        
+        var offsetY = scrollView.contentOffset.y + 316
+        
+        print(offsetY)
+        
+        if offsetY < 0 {
+            
+            offsetY = 0
+        }
+        
+        if offsetY > 316 {
+            offsetY = 316
+            
+        }
+        
+        shareView.frame.origin = CGPoint(x: 0, y: shareViewY!-offsetY)
+        
     }
     
     private func checkAuthorizationForPhotoLibraryAndGet(){

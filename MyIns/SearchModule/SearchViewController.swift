@@ -93,10 +93,30 @@ extension SearchViewController:ScrollViewWithCollectionViewsDelegate{
         
         searchBar.frame.origin = CGPoint(x: 0, y: searchBarY!-offSetY)
         
-        self.titleScrollView.frame = CGRect(x: 0, y:titleScrollViewY!-offSetY, width: self.titleScrollView.frame.width, height: titleScrollViewHeight!)
+       
         
         
-        self.imageScrollView.frame = CGRect(x: 0, y: imageScrollViewY!-offSetY, width: imageScrollView.frame.width, height: imageScrollViewHeight!+offSetY)
+        if offSetY < 55 {
+            
+            let alphaValue = (searchBar.frame.size.height-offSetY)/searchBar.frame.size.height
+            
+            searchBar.alpha = alphaValue
+            
+            self.titleScrollView.frame = CGRect(x: 0, y:titleScrollViewY!-offSetY, width: self.titleScrollView.frame.width, height: titleScrollViewHeight!)
+            
+            
+        }else if offSetY < 85 {
+            
+//            print("self.titleScrollView.frame:\(self.titleScrollView.frame)")
+            
+            self.titleScrollView.frame = CGRect(x: 0, y:21.5, width: self.titleScrollView.frame.width, height: titleScrollViewHeight!-(offSetY-55))
+        }else {
+            
+//            print("self.titleScrollView.frame:\(self.titleScrollView.frame)")
+            
+              self.titleScrollView.frame = CGRect(x: 0, y:21.5, width: self.titleScrollView.frame.width, height: 60.5)
+        }
+        
     }
     
     func viewDidSelected(index: Int) {
