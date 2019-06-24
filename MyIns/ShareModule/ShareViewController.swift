@@ -33,8 +33,6 @@ class ShareViewController: UIViewController,UITabBarDelegate,UICollectionViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.myView.shareViewController = self;
-        
         shareViewY = shareView.frame.origin.y
         
         let screenWidth = UIScreen.main.bounds.width
@@ -57,7 +55,7 @@ class ShareViewController: UIViewController,UITabBarDelegate,UICollectionViewDat
         
         imageColletionView.scrollIndicatorInsets = UIEdgeInsets(top: 316, left: 0, bottom: 0, right: 0)
         
-        (imageColletionView as? UIScrollView)?.delegate = self
+        (imageColletionView as UIScrollView).delegate = self
 
         
         checkAuthorizationForPhotoLibraryAndGet()
